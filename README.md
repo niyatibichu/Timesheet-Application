@@ -50,7 +50,7 @@ Tests are yet to be written for this app.
     ```
 * Browse to the application at [http://localhost:3000]
 
-![Screenshot](Timesheet-Application/screenshots/indexPage.PNGraw=true "Main Page")
+![Screenshot](https://github.com/niyatibichu/Timesheet-Application/blob/master/screenshots/indexPage.PNG "Main Page")
 
 ## Browser Support
 Tested against Chrome  and occasionally against Firefox and Internet Explorer.
