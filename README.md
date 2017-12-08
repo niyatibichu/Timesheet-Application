@@ -50,6 +50,8 @@ Tests are yet to be written for this app.
     ```
 * Browse to the application at [http://localhost:3000]
 
+![Screenshot](Timesheet-Application/screenshots/indexPage.PNGraw=true "Main Page")
+
 ## Browser Support
 Tested against Chrome  and occasionally against Firefox and Internet Explorer.
 The application should run on most modern browsers that are supported by the AngularJS framework.
