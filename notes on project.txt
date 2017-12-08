@@ -1,0 +1,5 @@
+*update date from today to date slected by user
+*add note about db
+*add testing
+*add one more column for total number of hours worked
+*fix timepicker
