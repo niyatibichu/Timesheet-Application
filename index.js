@@ -2,13 +2,15 @@
     'use strict';
     var app = angular.module('myapp', ['ui.bootstrap']);
 
-    app.controller('TableController', ['$scope', '$http', '$log', function ($scope, $http, $filter, $q, $log) {
+    app.controller('TableController', ['$scope', '$http', function ($scope, $http, $filter, $q) {
 
         console.log("in controller...");
         $scope.newUser = {};
+        $scope.clickedUser = {};
         $scope.info = "";
         $scope.temp = {};
-        $scope.obj1=[];
+        $scope.obj1 = [];
+         $scope.obj2 = [];
         //get already existing rows in json
         $scope.users = [];
         $http({
@@ -135,9 +137,7 @@
             $scope.from = d1;
         };
 
-        $scope.changed1 = function () {
-            $log.log('Time changed to: ' + $scope.from);
-        };
+
 
         $scope.clear = function () {
             $scope.from = null;
@@ -153,9 +153,6 @@
             $scope.to = d2;
         };
 
-        $scope.changed2 = function () {
-            $log.log('Time changed to: ' + $scope.to);
-        };
 
         $scope.clear = function () {
             $scope.to = null;
@@ -165,7 +162,8 @@
 
         $scope.selectUser = function (user) {
             $scope.clickedUser = user;
-            console.log("You clicked on -->"+JSON.stringify($scope.clickedUser));
+            console.log("You clicked on -->"+user.name);
+            console.log("You clicked on -->"+user.dt);
         };
 
         //save a user
@@ -188,8 +186,8 @@
             }).then(function successCallback(response) {
                 //console.log("Row added to backend array as well! New array with new name added \n" + JSON.stringify(response));
                 ///console.log("------------>"+response.data);
-                $scope.obj1=response.data;
-                $scope.users=[];
+                $scope.obj1 = response.data;
+                $scope.users = [];
                 for (var i = 0; i < $scope.obj1.length; i++) {
                     $scope.temp.name = $scope.obj1[i].name;
                     $scope.temp.dt = $scope.obj1[i].dt;
@@ -198,9 +196,9 @@
                     $scope.temp.comments = $scope.obj1[i].comments;
                     //console.log("Temp "+i+"is"+ JSON.stringify($scope.temp));                    
                     $scope.users.push($scope.temp);
-                    $scope.temp={};
+                    $scope.temp = {};
                 }
-               // console.log("users object looks like this" + JSON.stringify($scope.users));
+                // console.log("users object looks like this" + JSON.stringify($scope.users));
 
             }, function errorCallback(response) {
                 console.log("ERROR" + response);
@@ -213,10 +211,57 @@
             $scope.newUser = {};
         };
 
+        //update user
+        $scope.updateUser=function(){
+            console.log("Updating...");
+
+             $http({
+                method: 'POST',
+                url: '/update',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    "name": $scope.clickedUser.name,
+                    "dt": $scope.clickedUser.dt,
+                    "from": $scope.clickedUser.from,
+                    "to": $scope.clickedUser.to,
+                    "comments": $scope.clickedUser.comments
+                }
+            }).then(function successCallback(response) {
+                console.log("Row updated to backend array as well! New array with new name added \n" + JSON.stringify(response));
+                ///console.log("------------>"+response.data);
+                $scope.obj2 = response.data;
+                $scope.temp={};
+                $scope.users = [];
+                for (var i = 0; i < $scope.obj2.length; i++) {
+                    $scope.temp.name = $scope.obj2[i].name;
+                    $scope.temp.dt = $scope.obj2[i].dt;
+                    $scope.temp.from = $scope.obj2[i].from;
+                    $scope.temp.to = $scope.obj2[i].to;
+                    $scope.temp.comments = $scope.obj2[i].comments;
+                    //console.log("Temp "+i+"is"+ JSON.stringify($scope.temp));                    
+                    $scope.users.push($scope.temp);
+                    $scope.temp = {};
+                }
+                // console.log("users object looks like this" + JSON.stringify($scope.users));
+
+            }, function errorCallback(response) {
+                console.log("ERROR" + response);
+            });
+            $scope.info = "New User Added Successfully!";
+            //alert($scope.info);
+            //$scope.users.push($scope.newUser);
+            //console.log($scope.users);
+            //console.log($scope.info);
+            $scope.newUser = {};
+
+        };
+
 
         //delete a user
         $scope.deleteUser = function () {
-            console.log($scope.clickedUser);
+            // console.log($scope.clickedUser);
             $http({
                 method: 'POST',
                 url: '/remove',
@@ -231,7 +276,7 @@
                     "comments": $scope.clickedUser.comments
                 }
             }).then(function successCallback(response) {
-                console.log("Row added to backend array as well!" + JSON.stringify(response));
+                console.log("Row added to backend array as well!" + response.data);
 
 
             }, function errorCallback(response) {

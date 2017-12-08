@@ -191,16 +191,14 @@
                             <div class="form-group">
                                 <label for="inputName" class="col-sm-2 control-label">Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputName" placeholder="Name" ng-model="clickedUser.name">
+                                    <input type="text" class="form-control" placeholder="Name" ng-model="clickedUser.name">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputDate" class="col-sm-2 control-label">Date</label>
                                 <div class="col-sm-10">
                                     <p class="input-group">
-                                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" id="date" ng-model="clickedUser.dt" placeholder="MM/DD/YYY"
-                                            is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"
-                                            alt-input-formats="altInputFormats" />
+                                        <input type="text" class="form-control" uib-datepicker-popup ng-model="clickedUser.dt" placeholder="MM/DD/YYY" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                                         <span class="input-group-btn"><button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
                                     </p>
@@ -210,14 +208,14 @@
 
                             <div class="form-group">
                                 <label for="inputFrom" class="col-sm-2 control-label">From</label>
-                                <div uib-timepicker ng-model="clickedUser.from" ng-change="changed1()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian">
+                                <div uib-timepicker ng-model="clickedUser.from"  hour-step="hstep" minute-step="mstep" show-meridian="ismeridian">
                                 </div>
 
                             </div>
 
                             <div class="form-group">
                                 <label for="inputTo" class="col-sm-2 control-label">To</label>
-                                <div uib-timepicker ng-model="clickedUser.to" ng-change="changed2()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian">
+                                <div uib-timepicker ng-model="clickedUser.to"  hour-step="hstep" minute-step="mstep" show-meridian="ismeridian">
                                 </div>
 
                             </div>
@@ -231,7 +229,7 @@
 
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="saveUser();">Save</button>
+                                    <button type="submit" class="btn btn-default" data-dismiss="modal" ng-click="updateUser()">Update</button>
                                 </div>
                             </div>
                         </form>

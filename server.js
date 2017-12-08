@@ -26,20 +26,45 @@ app.get("/", function (req, res) {  //for index.html
     res.sendFile(__dirname + '/index.html');
 
 });
-app.get("/show", function (req, res) {  //for index.html    
-    res.json(obj);
+app.get("/show", function (req, res) {
+    res.send(obj);
 });
 
 app.post("/add", function (req, res) {
-    let entry = req.body;
+    let entry1 = req.body;
     // var entry = req.body;
     //console.log("Data received from adding new user" + JSON.stringify(entry));
     var contents = JSON.parse(fs.readFileSync('example.json', 'utf8'));
 
-    contents.push(entry);
+    contents.push(entry1);
     //console.log("Contents to be written to json file: \n"+ JSON.stringify(contents));
     fs.writeFileSync("example.json", JSON.stringify(contents));
-    res.json(obj);
+
+    res.send(contents);
+
+});
+
+app.post("/update", function (req, res) {
+    let entry2 = req.body;
+    //var entry = req.body;
+     var name_to_update = JSON.stringify(entry2.name);
+    console.log("Data received from updating user" + JSON.stringify(entry2));
+    var mcontents = JSON.parse(fs.readFileSync('example.json', 'utf8'));
+    for (var i = 0; i < mcontents.length; i++) {
+        var name_in_json2 = JSON.stringify(mcontents[i].name);
+
+        if (name_in_json2 == name_to_update) {
+            var index2 = i;
+        }
+    }
+    console.log("Index is : " + index2);
+    mcontents[i]=entry2;
+
+    // mcontents.push(entry2);
+    //console.log("Contents to be written to json file: \n"+ JSON.stringify(contents));
+    fs.writeFileSync("example.json", JSON.stringify(mcontents));
+
+    res.send(mcontents);
 
 });
 
