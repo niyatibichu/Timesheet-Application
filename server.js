@@ -58,7 +58,7 @@ app.post("/update", function (req, res) {
         }
     }
     console.log("Index is : " + index2);
-    mcontents[i]=entry2;
+    mcontents[index2]=entry2;
 
     // mcontents.push(entry2);
     //console.log("Contents to be written to json file: \n"+ JSON.stringify(contents));
