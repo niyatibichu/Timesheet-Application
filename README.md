@@ -4,7 +4,7 @@ A basic timesheet app using technologies like AngularJS, NodeJS, Bootstrap.
 ## Stack
 
 You need to install the following software: 
-* Backend: [Node.js](http://nodejs.org/), [Express.js](https://expressjs.com/)
+* Backend: [Node.js](http://nodejs.org/), [Express.js](https://expressjs.com/), [MongoDB](https://www.mongodb.com/)
 * Awesome [AngularJS](http://www.angularjs.org/) on the client
 * CSS based on [Angular's bootstrap](https://angular-ui.github.io/bootstrap/)
 
@@ -12,8 +12,9 @@ You need to install the following software:
 ## Installation
 
 ### Platform & tools
-You need to install Node.js and then the development tools. Node.js comes with a package manager called [npm](http://npmjs.org) for installing NodeJS applications and libraries.
+You need to install Node.js, Mongodb and then the development tools. Node.js comes with a package manager called [npm](http://npmjs.org) for installing NodeJS applications and libraries.
 * [Install node.js](http://nodejs.org/download/) (node.js version = 6.11.1 used for this application)
+* [Install MongoDB](https://www.mongodb.com/download-center#atlas)
 
 ### Get the Code
 
