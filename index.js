@@ -10,7 +10,7 @@
         $scope.info = "";
         $scope.temp = {};
         $scope.obj1 = [];
-         $scope.obj2 = [];
+        $scope.obj2 = [];
         //get already existing rows in json
         $scope.users = [];
         $http({
@@ -162,8 +162,8 @@
 
         $scope.selectUser = function (user) {
             $scope.clickedUser = user;
-            console.log("You clicked on -->"+user.name);
-            console.log("You clicked on -->"+user.dt);
+            console.log("You clicked on -->" + user.name);
+            console.log("You clicked on -->" + user.dt);
         };
 
         //save a user
@@ -181,7 +181,8 @@
                     "dt": $scope.newUser.dt,
                     "from": $scope.newUser.from,
                     "to": $scope.newUser.to,
-                    "comments": $scope.newUser.comments
+                    "comments": $scope.newUser.comments,
+
                 }
             }).then(function successCallback(response) {
                 //console.log("Row added to backend array as well! New array with new name added \n" + JSON.stringify(response));
@@ -212,10 +213,10 @@
         };
 
         //update user
-        $scope.updateUser=function(){
+        $scope.updateUser = function () {
             console.log("Updating...");
 
-             $http({
+            $http({
                 method: 'POST',
                 url: '/update',
                 headers: {
@@ -226,13 +227,14 @@
                     "dt": $scope.clickedUser.dt,
                     "from": $scope.clickedUser.from,
                     "to": $scope.clickedUser.to,
-                    "comments": $scope.clickedUser.comments
+                    "comments": $scope.clickedUser.comments,
+
                 }
             }).then(function successCallback(response) {
                 console.log("Row updated to backend array as well! New array with new name added \n" + JSON.stringify(response));
                 ///console.log("------------>"+response.data);
                 $scope.obj2 = response.data;
-                $scope.temp={};
+                $scope.temp = {};
                 $scope.users = [];
                 for (var i = 0; i < $scope.obj2.length; i++) {
                     $scope.temp.name = $scope.obj2[i].name;
